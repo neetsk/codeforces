@@ -1,0 +1,10 @@
+t = int(input())
+
+for q in range(t):
+    s = list(input())
+    s = [int(x) for x in s]
+
+    if s[0] + s[1] + s[2] == s[3] + s[4] + s[5]:
+        print("yes")
+    else:
+        print("no")

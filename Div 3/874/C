@@ -1,0 +1,39 @@
+t = int(input())
+
+for q in range(t):
+    n = int(input())
+    a = input().split(" ")
+    a = [int(x) for x in a]
+
+    minodd = 1000000002
+    mineven = 1000000002
+    minoddi = -1
+    mineveni = -1
+    
+    for i in range(n):
+        if a[i] % 2 == 0:
+            if mineven > a[i]:
+                mineven = a[i]
+                mineveni = i
+        else:
+            if minodd > a[i]:
+                minodd = a[i]
+                minoddi = i
+    
+    if minoddi == -1 or mineveni == -1:
+        print("YES")
+    else:
+        oddflag = True
+        evenflag = True
+        for i in range(n):
+            if a[i] % 2 == 0:
+                if a[i] - minodd < 1:
+                    oddflag = False
+            else:
+                if a[i] - minodd < 1:
+                    evenflag = False
+        if oddflag == False and evenflag == False:
+            print("NO")
+        else:
+            print("YES")
+        

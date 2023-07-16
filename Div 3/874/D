@@ -1,0 +1,11 @@
+t = int(input())
+
+for q in range(t):
+    n = int(input())
+    a = input().split(" ")
+    a = [int(x) for x in a]
+
+    maxlexo = int('9' * (len(str(n)) - 1))
+    if n < 9:
+        maxlexo = n
+    index = a.index(maxlexo)

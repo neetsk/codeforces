@@ -1,0 +1,12 @@
+t = int(input())
+
+for q in range(t):
+    n = int(input())
+    melodies = {}
+    string = input()
+
+    for i in range(0, n-1):
+        temp = string[i] + string[i + 1]
+        melodies[temp] = 0
+    
+    print(len(melodies))
