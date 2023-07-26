@@ -1,0 +1,20 @@
+
+def solve():
+    n, k = map(int, input().split())
+    bridge = [int(x) for x in input().split()]
+    print(bridge)
+
+    colors = [-1] * k
+    for i in range(n):
+        if i - colors[bridge[i] - 1] + 1 > colors[bridge[i] - 1]:
+            colors[bridge[i] - 1] = i - colors[bridge[i] - 1] + 1
+    print(colors)
+    ans1 = min(colors)
+    index = colors.index(max(colors))
+    colors[index] = colors[index // 2]
+    ans2 = max(colors)
+    return min(ans1, ans2)
+    
+t = int(input())
+for q in range(t):
+    print(solve())

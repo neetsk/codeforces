@@ -1,0 +1,50 @@
+
+def solve():
+    n = int(input())
+    a = [int(x) for x in input().split()]
+
+    odd = []
+    even = []
+
+    arr = []
+
+    for i in range(n):
+        if a[i] % 2 == 0:
+            even.append(a[i])
+            arr.append(0)
+        else:
+            odd.append(a[i])
+            arr.append(1)
+
+    odd.sort()
+    even.sort()
+
+    pointe = 0
+    pointo = 0
+    flag = False
+    for i in range(n):
+        if pointe == len(even) or pointo == len(odd):
+                break
+        if arr[i] == 0:
+            if even[pointe] > odd[pointo]:
+                print("NO")
+                flag = True
+                break
+            else:
+                pointe += 1
+        else:
+            if odd[pointo] > even[pointe]:
+                print("NO")
+                flag = True
+                break
+            else:
+                pointo += 1
+
+    if not flag:
+        print("YES")
+
+
+
+t = int(input())
+for q in range(t):
+    solve()

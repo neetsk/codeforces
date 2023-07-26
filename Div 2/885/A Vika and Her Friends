@@ -1,0 +1,76 @@
+
+'''
+grid = []
+
+def solve():
+    n,m,k = map(int, input().split())
+    vikax,vikay = map(int, input().split())
+    friends = []
+    
+    maxDist = 0
+    for i in range(k):
+        friendx, friendy = map(int, input().split())
+        if friendx == vikax and friendy == vikay:
+            return False
+        if abs(friendx - vikax) + abs(friendy - vikay) > maxDist:
+            maxDist = abs(friendx - vikax) + abs(friendy - vikay)
+        friends.append([friendx, friendy])
+
+    for a in range(1, n + 1):
+        for b in range(1, m + 1):
+            grid.append([a, b])
+
+    for i in range(k):
+        explore(friends[i][0], friends[i][1], maxDist, n, m)
+
+    if len(grid) > 0:
+        return True
+    else:
+        return False
+
+
+def explore(x, y, dist, n, m):
+    if dist == 0:
+        return
+    if x > 1:
+        explore(x - 1, y, dist - 1, n, m)
+        if [x - 1, y] in grid:
+            grid.remove([x-1,y])
+    if y > 1:
+        explore(x, y - 1, dist - 1, n, m)
+        if [x, y - 1] in grid:
+            grid.remove([x, y - 1])
+    if y < m:
+        explore(x, y + 1, dist - 1, n, m)
+        if [x, y + 1] in grid:
+            grid.remove([x, y + 1])
+    if x < n:
+        explore(x + 1, y, dist - 1, n, m)
+        if [x + 1, y] in grid:
+            grid.remove([x + 1, y])
+    return
+    
+'''
+
+''' After looking at tutorial '''
+
+def solve():
+    n, m, k = map(int, input().split())
+    vikax, vikay = map(int, input().split())
+    
+    ret = True
+    for i in range(k):
+        friendx, friendy = map(int, input().split())
+        if (abs(friendx - vikax) + abs(friendy - vikay)) % 2 == 0:
+            ret = False
+    return ret
+        
+
+t = int(input())
+for q in range(t):
+    if solve():
+        print("YES")
+    else:
+        print("NO")
+
+        

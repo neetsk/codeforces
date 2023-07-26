@@ -1,0 +1,6 @@
+
+def solve():
+
+t = int(input())
+for q in range(t):
+    solve()

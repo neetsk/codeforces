@@ -1,0 +1,54 @@
+
+def solve():
+    n = input().split()
+    k = int(n[1])
+    n = int(n[0])
+
+    a = [int(x) for x in input().split()]
+
+    if k == 1 or n == 1:
+        return True
+
+    startcol = a[0]
+    startnum = 1
+    endcol = a[n - 1]
+    endnum = 1
+    # same color
+    if startcol == endcol:
+        startnum = 2
+        for i in range(1, n - 1):
+            if a[i] == startcol:
+                startnum += 1
+        if startnum >= k:
+            return True
+        return False
+
+    # diff colors
+    start = -1
+    for i in range(1, n):
+        if a[i] == startcol:
+            startnum += 1
+            if startnum == k:
+                start = i
+                break
+
+    if start == -1: 
+        return False
+    if start == n - 1:
+        return True
+
+    for i in reversed(range(start + 1, n-1)):
+        if a[i] == endcol:
+            endnum += 1
+
+    if endnum >= k:
+        return True
+    return False
+        
+
+t = int(input())
+for q in range(t):
+    if solve():
+        print("YES")
+    else:
+        print("NO")

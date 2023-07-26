@@ -1,0 +1,23 @@
+
+def solve():
+    val = input().split()
+    n = int(val[0])
+    m = int(val[1])
+    k = int(val[2])
+    H = int(val[3])
+    h = [int(x) for x in input().split()]
+
+    individuals = 0
+
+    for i in range(n):
+        temp = abs(h[i] - H)
+        #print(temp, temp > 0, temp <= ((m-1) * k), temp % k == 0)
+        if temp > 0 and temp <= ((m-1) * k) and temp % k == 0:
+            individuals += 1
+        
+    print(individuals)
+
+
+t = int(input())
+for q in range(t):
+    solve()
