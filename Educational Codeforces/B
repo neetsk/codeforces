@@ -1,0 +1,27 @@
+
+def solve():
+    nums = input().split()
+    n = int(nums[0])
+    k = int(nums[1])
+
+    arr = input().split()
+    d = {}
+    zeros = []
+    for i in range(n):
+        if int(arr[i]) % k == 0:
+            zeros.append(i)
+        else:
+            d[i] = int(arr[i]) % k
+
+    d = sorted(d.items(), key=lambda x: (x[1], -x[0]), reverse=True)
+    a = []
+    for i in range(len(zeros)):
+        a.append(zeros[i] + 1)
+    for i in range(len(d)):
+        a.append(d[i][0] + 1)
+    print(*a, sep=' ')
+    
+
+t = int(input())
+for q in range(t):
+    solve()

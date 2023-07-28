@@ -1,6 +1,57 @@
 
 def solve():
+    n = int(input())
+    arr = [int(x) for x in input().split()]
+
+    nums = [0] * 200000
+
+    if arr[n-2] != (n*(n+1))/2:
+        arr.append((n*(n+1))//2)
+        for i in range(n-1):
+            if arr[i] > 20000100000 or arr[i + 1] > 20000100000:
+                return False
+            nums[arr[i + 1] - arr[i] - 1] += 1
+        for i in range(n):
+            if nums[i] == 0 or nums[i] > 1:
+                return False
+        return True
+
+    two = []
+
+    for i in range(n - 2):
+        if arr[i] > 20000100000 or arr[i + 1] > 20000100000:
+            return False
+        nums[arr[i + 1] - arr[i] - 1] += 1
+        if nums[arr[i + 1] - arr[i] - 1] == 2:
+            two.append(arr[i + 1] - arr[i])
+
+    print(two)   
+
+    if len(two) > 1:
+        return False
+    
+    if len(two) == 1:
+        if nums[two[0] - 1] > 2:
+            return False
+    
+    missing = []
+
+    for i in range(n):
+        if nums[i] == 0:
+            missing.append(i + 1)
+    
+    print(missing)
+
+    if len(missing) != 2:
+        return False
+
+    return True
+
+
 
 t = int(input())
 for q in range(t):
-    solve()
+    if solve():
+        print("YES")
+    else:
+        print("NO")
