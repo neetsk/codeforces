@@ -1,0 +1,32 @@
+t = int(input())
+
+def minVal(nums, left):
+    min = len(nums)
+    index = -1
+    for i in range(left, len(nums)):
+        if nums[i] < min:
+            min = nums[i]
+            index = i
+    return index
+
+for q in range(t):
+    n = int(input())
+    nums = [int(x) for x in input().split(" ")]
+
+    leftmost = 0
+
+    while leftmost < n - 1:
+        i = minVal(nums, leftmost)
+        #print(leftmost, i)
+        t = i
+        while(i > leftmost):
+            temp = nums[i]
+            nums[i] = nums[i - 1]
+            nums[i - 1] = temp 
+            i -= 1
+        if t == leftmost:
+            leftmost = t + 1
+        else:
+            leftmost = t
+        #print(nums)
+    print(' '.join([str(x) for x in nums]))
